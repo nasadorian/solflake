@@ -36,7 +36,7 @@ cargo build --release --target sbf-solana-solana
 ```
 
 Please note that the `cargo-build-sbf` tool and `cargo build-sbf` will not
-work, as they depend on `rustup`, which this flake does not support.
+work, as they depend on `rustup`, which this flake intentionally elides.
 
 ## Supported Versions
 Version is currently pinned to Solana `v1.17.6` and platform-tools `v1.39`
