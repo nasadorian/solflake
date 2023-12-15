@@ -32,8 +32,6 @@
             ln -s ${solana-platform}/rust/bin/* $out/bin/
             ln -s ${solana-platform}/llvm/bin/* $out/bin/
             ln -s $out/bin/ld.lld $out/bin/ld
-            #ln -s $out/bin/clang $out/bin/cc
-            #ln -s $out/bin/llvm-ar $out/bin/ar
             chmod 0755 -R $out
           '';
         };
@@ -47,8 +45,15 @@
             OBJDUMP = "${solana-platform}/llvm/bin/llvm-objdump";
             OBJCOPY = "${solana-platform}/llvm/bin/llvm-objcopy";
             RUSTC = "${solana-platform}/rust/bin/rustc";
+            RUSTFLAGS = "-C linker=ld.lld ar=llvm-ar";
             CARGO_CFG_TARGET_OS = "solana";
-            buildInputs = [ openssl ];
+            buildInputs = [
+              darwin.apple_sdk.frameworks.System
+              darwin.apple_sdk.frameworks.Security
+              darwin.apple_sdk.frameworks.SystemConfiguration
+              darwin.apple_sdk.frameworks.CoreFoundation
+              darwin.apple_sdk.frameworks.CoreServices
+            ];
             packages = [ solana-cli ];
           };
         };
