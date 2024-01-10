@@ -44,8 +44,9 @@
             OBJDUMP = "${solana-platform}/llvm/bin/llvm-objdump";
             OBJCOPY = "${solana-platform}/llvm/bin/llvm-objcopy";
             RUSTC = "${solana-platform}/rust/bin/rustc";
-            RUSTFLAGS = "--target sbf-solana-solana -C linker=ld.lld -C ar=llvm-ar";
+            RUSTFLAGS = "linker=ld.lld -C ar=llvm-ar";
             CARGO_CFG_TARGET_OS = "solana";
+            CARGO_BUILD_TARGET = "sbf-solana-solana";
             buildInputs = [
               darwin.apple_sdk.frameworks.System
               darwin.apple_sdk.frameworks.Security
