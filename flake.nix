@@ -39,13 +39,12 @@
         packages = { default = solana-cli; };
         devShells = {
           default = mkShellNoCC {
-            LD = "${solana-platform}/llvm/bin/ld.lld";
             CC = "${solana-platform}/llvm/bin/clang";
             AR = "${solana-platform}/llvm/bin/llvm-ar";
             OBJDUMP = "${solana-platform}/llvm/bin/llvm-objdump";
             OBJCOPY = "${solana-platform}/llvm/bin/llvm-objcopy";
             RUSTC = "${solana-platform}/rust/bin/rustc";
-            RUSTFLAGS = "-C linker=ld.lld ar=llvm-ar";
+            RUSTFLAGS = "--target sbf-solana-solana -C linker=ld.lld -C ar=llvm-ar";
             CARGO_CFG_TARGET_OS = "solana";
             buildInputs = [
               darwin.apple_sdk.frameworks.System
