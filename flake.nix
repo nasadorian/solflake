@@ -44,16 +44,15 @@
             OBJDUMP = "${solana-platform}/llvm/bin/llvm-objdump";
             OBJCOPY = "${solana-platform}/llvm/bin/llvm-objcopy";
             RUSTC = "${solana-platform}/rust/bin/rustc";
-            RUSTFLAGS = "linker=ld.lld -C ar=llvm-ar";
             CARGO_CFG_TARGET_OS = "solana";
             CARGO_BUILD_TARGET = "sbf-solana-solana";
-            buildInputs = [
+            buildInputs = if system == "aarch64-darwin" then [
               darwin.apple_sdk.frameworks.System
               darwin.apple_sdk.frameworks.Security
               darwin.apple_sdk.frameworks.SystemConfiguration
               darwin.apple_sdk.frameworks.CoreFoundation
               darwin.apple_sdk.frameworks.CoreServices
-            ];
+            ] else [ openssl ];
             packages = [ solana-cli ];
           };
         };
