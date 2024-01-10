@@ -52,7 +52,7 @@
               darwin.apple_sdk.frameworks.SystemConfiguration
               darwin.apple_sdk.frameworks.CoreFoundation
               darwin.apple_sdk.frameworks.CoreServices
-            ] else [ openssl ];
+            ] else [ openssl autoPatchelfHook ];
             packages = [ solana-cli ];
           };
         };
