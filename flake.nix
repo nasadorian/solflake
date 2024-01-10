@@ -46,13 +46,16 @@
             RUSTC = "${solana-platform}/rust/bin/rustc";
             CARGO_CFG_TARGET_OS = "solana";
             CARGO_BUILD_TARGET = "sbf-solana-solana";
+            nativeBuildInputs =
+              if system == "aarch64-darwin" then [ pkg-config ]
+              else [ autoPatchelfHook ];
             buildInputs = if system == "aarch64-darwin" then [
               darwin.apple_sdk.frameworks.System
               darwin.apple_sdk.frameworks.Security
               darwin.apple_sdk.frameworks.SystemConfiguration
               darwin.apple_sdk.frameworks.CoreFoundation
               darwin.apple_sdk.frameworks.CoreServices
-            ] else [ openssl autoPatchelfHook ];
+            ] else [ openssl ];
             packages = [ solana-cli ];
           };
         };
